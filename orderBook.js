@@ -36,21 +36,6 @@ function reconcileOrder(existingBook, incomingOrder) {
     }
   }
 
-  //   if (existingBook.length === 0) return [incomingOrder] 
-
-  //   for (let i = 0; i < existingBook.length; i++) {
-  //     if (isMatchingOrder(existingBook[i], incomingOrder)) {
-
-  //       if (existingBook[i].quantity > incomingOrder)
-  //       {
-  //         existingBook
-  //  }    }
-  //  }
-  // for loop through array
-  // if ismatchingOrder (existingBook[i], incomingOrder)
-  // if match
-  //update quantities 
-  //return filtered quantities  so orders wth 0 aren't in the book
 
   updatedBook.push(newIncomingOrder)
   
