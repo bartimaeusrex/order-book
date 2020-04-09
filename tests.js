@@ -55,7 +55,7 @@ describe('Order Book', () => {
       expect(updatedBook).to.deep.equal([{ type: 'sell', quantity: 12, price: 6950 }, { type: 'buy', quantity: 5, price: 6150 }])
     })
     // 6
-    it.only('partially fulfills an order, removes the matching order and adds the remainder of the order to the book when the book contains a matching order of a smaller quantity', () => {
+    it('partially fulfills an order, removes the matching order and adds the remainder of the order to the book when the book contains a matching order of a smaller quantity', () => {
       const existingBook = [{ type: 'buy', quantity: 10, price: 6150 }, { type: 'sell', quantity: 12, price: 5950 }]
       const incomingOrder = { type: 'sell', quantity: 15, price: 6150 }
 

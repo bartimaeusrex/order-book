@@ -1,23 +1,71 @@
 
 
-const matchingOrder = (existingBook, incomingOrder, i) => {
+const matchingOrder = (existingBook, incomingOrder, i) => 
   existingBook[i].type !== incomingOrder.type && existingBook[i].price === incomingOrder.price
-  return 
-}
+  
+// const existingMinusIncomingQuantity = (existingBook, incomingOrder, i) => {
+//   if (existingBook[i].quantity > incomingOrder.quantity) {
+//     return (existingBook[i].quantity -= incomingOrder.quantity)
+//   }
+// }
 
+// const incomingMinusExistingQuantity = (existingBook, incomingOrder, i) => {
+//   incomingOrder.quantity -= existingBook[i].quantity
+// }
 
-const existingMinusIncomingQuantity = (existingBook, incomingOrder, i) => {
-  if (existingBook[i].quantity > incomingOrder.quantity) {
-    return (existingBook[i].quantity -= incomingOrder.quantity)
+class Order{
+  constructor(type, quantity, price) {
+    this.type = type
+    this.quantity = quantity
+    this.price = price
   }
 }
 
-const incomingMinusExistingQuantity = (existingBook, incomingOrder, i) => {
-  incomingOrder.quantity -= existingBook[i].quantity
+function addOrder(a, b) {
+  if (a.price !== b.price) {
+    return false // throw new Error('No match')
+  }
+  if (a.type === b.type) {
+    return {
+      type: a.type,
+      price: a.price,
+      quantity: a.quantity+b.quantity
+    }
+  }
+  // Different
+  const netType = a.quantity > b.quantity ? a.type : b.type
+  return {
+    type: netType,
+    price: a.price,
+    quantity: Math.abs(a.quantity-b.quantity),
+  }
 }
+
+function isSane(existingBook) {
+  return //no duplicated prices;
+}
+
+function reconcile(existingBook, incomingOrder, i) {
+  if (!isSane(existingBook)) {
+    return false // throw new Error('Bogus book');
+  }
+  const updatedBook = [...existingBook]
+
+  if (existingBook[i].price === existingBook[i++].price) {
+    return addOrder
+  }
+  // Find matching price in book
+  // If none: add order to book
+  // If found, update book with added order
+
+  return updatedBook
+}
+
+
 
 // //////////////////////////////////////////////////////
 
+// Complete BS below 
 // const updateQuantityRequired = (existingBook, incomingOrder) => {
 //   return (consolidateOrderQuantity && matchingOrder) || (matchingOrder && (existingBook[i].quantity > incomingOrder.quantity)) ? (existingBook[i].quantity - incomingOrder.quantity)
 //     : (consolidateOrderQuantity && matchingOrder) || (matchingOrder && (existingBook[i].quantity < incomingOrder.quantity)) ? (incomingOrder.quantity - existingBook[i].quantity)
@@ -29,9 +77,9 @@ const incomingMinusExistingQuantity = (existingBook, incomingOrder, i) => {
 //     :
 //  }
 
-const updateQuantity = (matchingOrder, incomingOrder) => matchingOrder.quantity <= incomingOrder.quantity
-  ? { ...incomingOrder, quantity: incomingOrder.quantity - matchingOrder.quantity }
-  : { ...matchingOrder, quantity: matchingOrder.quantity - incomingOrder.quantity, }
+// const updateQuantity = (matchingOrder, incomingOrder) => matchingOrder.quantity <= incomingOrder.quantity
+//   ? { ...incomingOrder, quantity: incomingOrder.quantity - matchingOrder.quantity }
+//   : { ...matchingOrder, quantity: matchingOrder.quantity - incomingOrder.quantity, }
    
 /* function for updateQuantity? assuming the orders are otherwise matching
     Need to do:
@@ -61,7 +109,7 @@ const updateQuantity = (matchingOrder, incomingOrder) => matchingOrder.quantity 
 
 const reconcileOrder = (existingBook, incomingOrder) => {
   let updatedBook = []
-  
+
   // PASSED. 1.
   if (existingBook.length === 0) {
     updatedBook.push(incomingOrder)
