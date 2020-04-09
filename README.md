@@ -13,7 +13,7 @@ Assume starting with an empty order book, let's walkthrough several scenarios.
 
 **Buy 15 BTC at 5800:** The order book is empty so this order cannot be fulfilled immediately. This order is added to the book.
 
-**Buy 10 BTC at 6000:** The order book only has buy orders and no sell ordrs so this order cannot be fulfilled immediately. This order is added to the book.
+**Buy 10 BTC at 6000:** The order book only has buy orders and no sell orders so this order cannot be fulfilled immediately. This order is added to the book.
 
 **Sell 5 BTC at 6100:** The order book has two buy orders but neither match this as the prices mismatch. This order is added to the book.
 
